@@ -1,0 +1,37 @@
+{
+    "exclude": [ "node_modules" ],
+    "include": [
+        "src/ts/**/*.ts", 
+        "src/ts/**/*.d.ts",
+        "src/ts/types/**/*.d.ts"
+    ],
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "ESNext",
+        "rootDir": "./",
+        "moduleResolution": "node",
+        "baseUrl": ".",                                 
+        "paths": {
+            "@zig/ffmpeg": ["./src/zig/src/ffmpeg.zig"],
+            "@/*": ["src/ts/*"]
+        },                                     
+        "outDir": "./dist",
+        "sourceMap": true,
+        "removeComments": true,
+        "inlineSources": true,
+        "noEmitOnError": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "strictFunctionTypes": true,
+        "strictPropertyInitialization": true,
+        "noImplicitThis": true,
+        "useUnknownInCatchVariables": true,
+        "alwaysStrict": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "skipLibCheck": false
+    }
+}
