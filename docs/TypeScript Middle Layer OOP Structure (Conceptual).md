@@ -7,6 +7,7 @@ This outlines a potential class structure for the TypeScript Middle Layer, desig
         - Manages the global lifecycle of the Zig Engine (`initialize_engine`, `shutdown_engine`).
         - Holds the global `EngineHandle`.
         - Manages a collection (e.g., `Map<streamId, Stream>`) of active `Stream` instances.
+        - Implements and provides the global `on_log` callback to Zig during initialization.
         - Acts as the entry point for creating new streams.
         - Potentially houses the static callback methods invoked by Zig, dispatching them to the correct `Stream` instance.
     - **Key Methods/Properties:**
@@ -16,6 +17,7 @@ This outlines a potential class structure for the TypeScript Middle Layer, desig
         - `getStream(streamId: number): Stream | undefined`
         - `removeStream(streamId: number): void`
         - `static _onRtpPacketCallback(...)` (Finds stream via ID, calls its packet handler).
+        - `_handleLog(level: LogLevel, messageBytes: Uint8Array)` _(Implementation using console._)
         - `static _onStreamStatusCallback(...)` (Finds stream via ID, calls its status handler).
 - **`Stream`**
     

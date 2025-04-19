@@ -13,8 +13,7 @@
         "baseUrl": ".",                                 
         "paths": {
             "@zig/ffmpeg": ["./src/zig/src/ffmpeg.zig"],
-            "@zig/test_ffmpeg": ["./src/zig/src/test_ffmpeg.zig"],
-            "@/*": ["src/ts/*"]
+            "@zig/engine": ["./src/zig/src/engine.zig"]
         },                                     
         "outDir": "./dist",
         "sourceMap": true,

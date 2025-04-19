@@ -3,10 +3,11 @@ This section defines the logical functions that the Zig Engine must export for t
 ---
 ### Engine Lifecycle
 
-- **`initialize_engine()`**
+- **`initialize_engine(callbacks: EngineCallbacks)`**
     
     - **Description:** Initializes the global Zig engine environment. Must be called once before any other engine operations.
-    - **Parameters:** None (or potentially an allocator if managed externally).
+    - **Parameters:**
+        - `callbacks`: A structure containing references to global TS callback functions (e.g., `on_log`).
     - **Returns:** `Result<EngineHandle, EngineError>`
         - `EngineHandle`: An opaque handle representing the initialized engine instance.
         - `EngineError`: Indicates failure during initialization.
@@ -16,7 +17,7 @@ This section defines the logical functions that the Zig Engine must export for t
     - **Parameters:**
         - `engine_handle`: The handle obtained from `initialize_engine`.
     - **Returns:** `Result<void, EngineError>`
----
+
 ### Stream Management
 
 - **`create_stream(engine_handle: EngineHandle, stream_id: u64, source_url: string, callbacks: StreamCallbacks)`**
@@ -26,13 +27,13 @@ This section defines the logical functions that the Zig Engine must export for t
         - `engine_handle`: The global engine handle.
         - `stream_id`: A unique identifier provided by the TS Middle Layer to identify this stream in subsequent callbacks.
         - `source_url`: The URL or identifier of the audio source to be processed.
-        - `callbacks`: A structure/object containing references to the TypeScript callback functions (`on_rtp_packet`, `on_stream_status`) that Zig should use for this stream. (Zigar must facilitate passing these function references).
+        - `callbacks`: A structure/object containing references to the TypeScript callback functions (`on_rtp_packet`, `on_stream_status`) that Zig should use for _this specific stream_.
     - **Returns:** `Result<StreamHandle, StreamError>`
         - `StreamHandle`: An opaque handle representing this specific stream instance within Zig. Used for subsequent control calls.
-        - `StreamError`: Indicates failure during stream creation (e.g., invalid source, resource allocation failure).
+        - `StreamError`: Indicates failure during stream creation.
 - **`destroy_stream(stream_handle: StreamHandle)`**
     
-    - **Description:** Tells the Zig engine to stop processing and clean up all resources associated with a specific stream. Should be called when the stream ends, errors out, or is explicitly stopped.
+    - **Description:** Tells the Zig engine to stop processing and clean up all resources associated with a specific stream.
     - **Parameters:**
         - `stream_handle`: The handle for the specific stream to destroy.
     - **Returns:** `Result<void, StreamError>`

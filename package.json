@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc && cp -r ./src/zig ./dist && tscpaths -p tsconfig.json -s ./src -o ./dist",
-    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register --loader=node-zigar --no-warnings ./dist/src/ts/main.js",
+    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register --loader=node-zigar --no-warnings ./dist/src/ts/index.js",
     "dev": "nodemon --watch src -e ts,js,zig --exec \"npm run build && npm start\""
   },
   "repository": {
@@ -27,11 +27,13 @@
   "dependencies": {
     "node-zigar": "^0.14.0",
     "nodemon": "^3.1.9",
+    "signale": "^1.4.0",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.24.0",
+    "@types/signale": "^1.4.7",
     "@typescript-eslint/eslint-plugin": "^8.30.1",
     "@typescript-eslint/parser": "^8.30.1",
     "eslint": "^9.24.0",

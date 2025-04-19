@@ -1,7 +1,8 @@
 {
   "optimize": "ReleaseSmall",
   "sourceFiles": {
-    "src/ffmpeg.zigar": "src/ffmpeg.zig" 
+    "src/ffmpeg.zig": "src/ffmpeg.zig",
+    "src/engine.zig": "src/engine.zig" 
   },
   "targets": [
     { "platform": "linux", "arch": "x64" }
