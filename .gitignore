@@ -2,6 +2,7 @@ node_modules
 .zigar-cache
 dist
 docs/.obsidian
+.zigar-cache
 src/zig/.zig-cache
 src/zig/src/.zig-cache
 video.mp4
